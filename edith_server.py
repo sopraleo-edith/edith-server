@@ -251,8 +251,8 @@ def {nom_skill}():
 # =============================
 
 @app.get("/")
-def racine():
-    return {"message": f"{NOM_IA} en ligne. API opérationnelle."}
+def serve_index():
+    return FileResponse("index.html")
 
 
 @app.post("/api/chat")
@@ -288,4 +288,5 @@ def delete_skill(req: DeleteSkillRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors de la suppression de la skill : {e}")
     return {"status": "ok", "message": f"Skill '{req.name}' supprimée et rechargée."}
+
 
