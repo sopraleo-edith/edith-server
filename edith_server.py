@@ -1,3 +1,4 @@
+from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import datetime
@@ -288,5 +289,6 @@ def delete_skill(req: DeleteSkillRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors de la suppression de la skill : {e}")
     return {"status": "ok", "message": f"Skill '{req.name}' supprimée et rechargée."}
+
 
 
