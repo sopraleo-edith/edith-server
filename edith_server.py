@@ -8,6 +8,20 @@ import importlib
 import types
 from pathlib import Path
 
+# === CONFIGURATION DE L'IA GROQ ===
+client = Groq(api_key="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")
+
+def appeler_IA(message):
+    completion = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[
+            {"role": "system", "content": "Tu es E.D.I.T.H, une IA intelligente, polie et utile."},
+            {"role": "user", "content": message}
+        ]
+    )
+    return completion.choices[0].message["content"]
+
+
 # =============================
 #     E.D.I.T.H – API Serveur
 # =============================
@@ -259,8 +273,9 @@ def serve_index():
 
 @app.post("/api/chat")
 def chat(msg: Message):
-    reponse = analyse_commande(msg.message)
+    reponse = appeler_IA(msg.message)
     return {"response": reponse}
+
 
 
 @app.post("/api/add_skill")
@@ -290,6 +305,7 @@ def delete_skill(req: DeleteSkillRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors de la suppression de la skill : {e}")
     return {"status": "ok", "message": f"Skill '{req.name}' supprimée et rechargée."}
+
 
 
 
