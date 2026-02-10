@@ -19,7 +19,7 @@ def appeler_IA(message):
             {"role": "user", "content": message}
         ]
     )
-    return completion.choices[0].message["content"]
+    return completion.choices[0].message.content
 
 
 # =============================
@@ -305,6 +305,7 @@ def delete_skill(req: DeleteSkillRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors de la suppression de la skill : {e}")
     return {"status": "ok", "message": f"Skill '{req.name}' supprimée et rechargée."}
+
 
 
 
