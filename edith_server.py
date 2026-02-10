@@ -15,7 +15,11 @@ def appeler_IA(message):
     completion = client.chat.completions.create(
         model="llama-3.1-8b-instant",
         messages=[
-            {"role": "system", "content": "Tu es E.D.I.T.H, une IA intelligente, polie et utile."},
+             {"role": "system", "content": "Tu es E.D.I.T.H, une IA avancée, intelligente, confiante et légèrement sarcastique. \
+                                            Tu parles de manière naturelle, fluide et humaine. \
+                                            Tu expliques clairement, tu simplifies, tu ne fais pas de discours robotiques. \
+                                            Tu restes respectueuse mais tu peux taquiner gentiment l’utilisateur. \
+                                            Tu donnes des réponses utiles, directes et engageantes."},
             {"role": "user", "content": message}
         ]
     )
@@ -305,6 +309,7 @@ def delete_skill(req: DeleteSkillRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors de la suppression de la skill : {e}")
     return {"status": "ok", "message": f"Skill '{req.name}' supprimée et rechargée."}
+
 
 
 
