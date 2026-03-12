@@ -9,7 +9,7 @@ import types
 from pathlib import Path
 
 # === CONFIGURATION DE L'IA GROQ ===
-client = Groq(api_key="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")
+client = Groq(api_key="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")
 
 def appeler_IA(message):
     completion = client.chat.completions.create(
@@ -309,6 +309,7 @@ def delete_skill(req: DeleteSkillRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors de la suppression de la skill : {e}")
     return {"status": "ok", "message": f"Skill '{req.name}' supprimée et rechargée."}
+
 
 
 
