@@ -9,7 +9,7 @@ import types
 from pathlib import Path
 
 # === CONFIGURATION DE L'IA GROQ ===
-client = Groq(api_key="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")
+client = Groq(api_key="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")
 
 def appeler_IA(message):
     completion = client.chat.completions.create(
